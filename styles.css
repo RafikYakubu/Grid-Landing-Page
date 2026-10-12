@@ -12,6 +12,7 @@
     --blue-400: hsl(220, 100%, 64%);
     --blue-600: hsl(228, 100%, 60%);
     --blue-700: hsl(228, 99%, 58%);
+    --header-height: 4.5rem;
 }
 
 body {
@@ -26,9 +27,13 @@ body {
 
 header {
     display: flex;
+    position: relative;
+    z-index: 20;
+    height: var(--header-height);
+    padding: 0 1.5rem;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
+    background-color: var(--blue-700);
     border-bottom: 1px solid var(--blue-400);
 }
 
@@ -56,26 +61,77 @@ header a  {
     border: none;
     cursor: pointer;
 }
+.menu {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.25);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.menu.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+.menu-panel {
+    width: 100%;
+    height: auto;
+    padding: calc(var(--header-height) + 1.5rem) 1.5rem 2rem;
+    background-color: var(--blue-700);
+    text-align: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.menu.open .menu-panel {
+    transform: none;
+}
+
+.menu-panel ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.menu-panel a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.menu-panel a:hover {
+    text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
 
 main {
-    display: grid;
     flex: 1;
-    grid-template-columns: 1fr 1fr;
     border-bottom: 1px solid var(--blue-400);
 }
 
 .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem 3rem;
+    border-bottom: 1px solid var(--blue-400);
+    padding: 2rem 1.5rem;
 }
 
 .hero h1 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     font-weight: 400;
     line-height: 1.1;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.02em;
     margin-bottom: 1rem;
 }
 
@@ -90,12 +146,12 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
 }
 
 .stat-number {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1;
 }
 
 .stat-info h2 {
@@ -115,11 +171,17 @@ main {
     justify-content: space-between;
     min-height: 18rem;
     padding: 1.5rem;
+    cursor: pointer;
+}
+
+.stats article:hover {
+    background-color: var(--blue-600);
 }
 
 .stats article + article {
     border-top: 1px solid var(--blue-400);
 }
+
 footer {
     display: flex;
     flex-direction: column;
@@ -130,21 +192,25 @@ footer {
 
 @media (min-width: 800px) {
     header {
-        padding: 1.5rem 3rem;
+        padding: 0 3rem;
     }
 
     footer {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 1.5rem 3rem;
-    }
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+}
 
     main {
         display: grid;
         grid-template-columns: 9fr 11fr;
     }
 
-    .hero {
+     .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         padding: 2rem 3rem;
         border-bottom: none;
     }
@@ -161,12 +227,15 @@ footer {
     }
 
     .stats {
+        grid-template-rows: 1fr 1fr;
+        
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
 
     .stats article {
         padding: 2rem;
+        min-height: 0;
         border-left: 1px solid var(--blue-400);
     }
 
@@ -177,4 +246,17 @@ footer {
     .stats article:nth-child(n + 3) {
         border-top: 1px solid var(--blue-400);
     }
+
+    .stat-number {
+    font-size: 2.5rem;
+}
+
+    .menu-panel {
+    width: 26.35rem;
+    height: 100%;
+    margin-left: auto;
+    padding: calc(var(--header-height) + 2rem) 2rem 2rem;
+    text-align: right;
+    transform: translateX(100%);
+}
 }

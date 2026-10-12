@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 <link href="styles.css" rel="stylesheet">
-    <title>Grid landing Page</title>
+    <title>Bridge Collective</title>
 </head>
 <body>
     <header>
@@ -16,13 +16,24 @@
   Bridge Collective
         </a>
 
-        <button class="menu-btn" aria-label="Open menu">
+        <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
              <img src="images/icon-menu.svg" alt=""/>
         </button>
            
         
 
     </header>
+    <div class="menu" id="menu">
+  <nav class="menu-panel" aria-label="Main">
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Our Work</a></li>
+      <li><a href="#">Partners</a></li>
+      <li><a href="#">Annual Report</a></li>
+      <li><a href="#">Donate</a></li>
+    </ul>
+  </nav>
+</div>
 
     <main>
         <section class="hero">
@@ -82,5 +93,7 @@
     <p>© 2026 Bridge Collective</p>
     <p>Registered charity 12345678</p>
 </footer>
+
+<script src="script.js"></script>
 </body>
 </html>
